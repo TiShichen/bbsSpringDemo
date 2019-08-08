@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class IndexController {
 
+    // 导引向首页
     @GetMapping("/")
     public String index(){
         return "index";

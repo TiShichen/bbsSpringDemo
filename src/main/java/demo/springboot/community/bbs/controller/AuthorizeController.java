@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class AuthorizeController {
     @Autowired
-    private GithubProvider githubProvider;
+    private GithubProvider githubProvider;      // 控制反转，spring提前将对象 githubProvider放入container
 
     @Value("${github.client.id}")
-    private String clientId;
+    private String clientId;                    // 与@Autowired类似。可根据application.properties文件方便各个用户读取信息
     @Value("${github.client.secret}")
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private String redirectUri;
 
-    @GetMapping("/callback")
+    @GetMapping("/callback")                    // Github将以"/callback"结尾的url请求返回
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
                            HttpServletRequest request) {
@@ -35,13 +35,13 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser user = githubProvider.getUser(accessToken);
-        if (user != null) {
+        if (user != null) {                     // 如果成功返回了非空user，说明Github登录成功
             // login is successful, proceed to create session and cookie
             request.getSession().setAttribute("user", user);
             return "redirect:index";
         } else {
             // login failed, proceed to re-login
-            return "redirect:index";
+            return "redirect:index";            // 使用"redirect"指令，使返回网站重定向至index URL
         }
     }
 }
