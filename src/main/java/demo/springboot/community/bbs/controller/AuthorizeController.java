@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
@@ -32,7 +34,8 @@ public class AuthorizeController {
     @GetMapping("/callback")                    // Github return a URL ending with "/callback"
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request) {
+                           HttpServletRequest request,
+                           HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
@@ -44,13 +47,16 @@ public class AuthorizeController {
         if (githubUser != null) {                     // If a not null user is returned, the login is successful
             // login is successful, proceed to create session and cookie
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            userMapper.insert(user);
-            request.getSession().setAttribute("user", githubUser);
+            userMapper.insert(user);                    // put user info into database as a session
+            response.addCookie(new Cookie("token", token)); //create cookie
+
+//            request.getSession().setAttribute("user", githubUser);
             return "redirect:/";
         } else {
             // login failed, proceed to re-login
