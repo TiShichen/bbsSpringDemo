@@ -9,6 +9,7 @@ https://elasticsearch.cn/
 [jQuery](https://jquery.com/)
 
 ## 脚本
+Create MySql table
 ```sql
 create table user
 (
@@ -20,4 +21,12 @@ create table user
 	gmt_create bigint(255) null,
 	gmt_modified bigint(255) null
 );
+```
+flyway db.migration file naming scheme(Double under scroll):
+```
+V1.2__Description.sql
+``` 
+flyway migrate script
+```bash
+mvn flyway:migrate
 ```
