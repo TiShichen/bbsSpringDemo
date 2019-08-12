@@ -1,12 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Springboot BBS</title>
+    <title>发布 - Springboot BBS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
 </head>
-<body>
+
+<!--
+<style>
+    body {
+        background-image: url("../resources/static/img/45degreee_fabric/45degreee_fabric.png");
+        background-repeat: repeat;
+/*
+        background-color: #efefef;
+*/
+    }
+</style>
+-->
+
+<body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-fw"></i> Springboot BBS Demo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -27,7 +40,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-0 mt-2 mt-lg-0">
             <li class="nav-item dropdown" th:if="${session.user != null}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"></a>
@@ -46,6 +59,42 @@
         </ul>
     </div>
 </nav>
+
+<div class="container-fluid" style="margin: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
+    <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <h2><span class="fa fa-plus-square fa-fw" aria-hidden="true"></span> 发起</h2>
+            <hr>
+
+            <form action="">
+                <div class="form-group">
+                    <label for="title">问题标题（简单扼要）：</label>
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="textHelp" placeholder="问题标题...">
+                    <small id="titleHelp" class="form-text text-muted">Please state your question in a short and clean style.</small>
+                </div>
+                <div class="form-group">
+                    <label for="title">问题内容（必填，请参照右侧提示）：</label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="问题内容..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title">添加标签：</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以逗号隔开">
+                </div>
+
+                <button type="submit" class="btn btn-success" style="float: right">发布</button>
+            </form>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12" style="background-color: white;">
+            <h2><i class="fa fa-question fa-fw"></i> 问题指南</h2>
+            <hr>
+            <ul>
+                <li>问题标题：请用精简的语言藐视您想发布的问题，不超过25字</li>
+                <li>问题内容：请详细补充您的问题内容，并确保问题描述清晰直观，同时提供一些相关的资料</li>
+                <li>选择标签：选择一个或多个合适的标签，用逗号隔开，每个标签不超过10字</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
