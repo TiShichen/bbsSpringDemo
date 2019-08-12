@@ -79,6 +79,24 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.2.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.16</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/bbsmysql</url>
+                    <user>root</user>
+                    <password>@111Llllsc</password>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
