@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 // mybatis integration, insert data from the model "user" into datasource(mysql database)
 @Mapper
 public interface UserMapper {
+
     @Insert("insert into user (name,account,token,gmt_create,gmt_modified) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
     void insert(User user);
 

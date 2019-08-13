@@ -66,7 +66,7 @@
             <h2><span class="fa fa-plus-square fa-fw" aria-hidden="true"></span> 发起</h2>
             <hr>
 
-            <form action="">
+            <form action="/publish" method="post">
                 <div class="form-group">
                     <label for="title">问题标题（简单扼要）：</label>
                     <input type="text" class="form-control" id="title" name="title" aria-describedby="textHelp" placeholder="问题标题...">
@@ -80,6 +80,8 @@
                     <label for="title">添加标签：</label>
                     <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以逗号隔开">
                 </div>
+
+                <span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
 
                 <button type="submit" class="btn btn-success" style="float: right">发布</button>
             </form>
