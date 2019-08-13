@@ -33,22 +33,39 @@ public class PublishController {
 
     @PostMapping("/publish")
     public String doPublish(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("tag") String tag,
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "description", required = false) String description,
+            @RequestParam(value = "tag", required = false) String tag,
             HttpServletRequest request,
             Model model) {
 
+        model.addAttribute("title", title);
+        model.addAttribute("description", description);
+        model.addAttribute("tag", tag);
+
+        if (title == null || title == "") {
+            model.addAttribute("error", "Title cannot be empty.");
+            return "publish";
+        }
+        if (description == null || description == "") {
+            model.addAttribute("error", "Description needs more detail than being empty :)");
+            return "publish";
+        }
+        if (tag == null || tag == "") {
+            model.addAttribute("error", "Please add at least one tag, any tag will work.");
+            return "publish";
+        }
+
         User user = null;
         Cookie[] cookies = request.getCookies();
-        if (cookies == null){
+        if (cookies == null) {
             return "index";
         }
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")){
+            if (cookie.getName().equals("token")) {
                 String token = cookie.getValue();
                 user = userMapper.findByToken(token);
-                if (user != null){
+                if (user != null) {
                     request.getSession().setAttribute("user", user);
                 }
                 break;
@@ -56,7 +73,7 @@ public class PublishController {
         }
 
         if (user == null) {
-            model.addAttribute("error", "用户尚未登录");
+            model.addAttribute("error", "User not signed in.");
             return "publish";
         }
 
