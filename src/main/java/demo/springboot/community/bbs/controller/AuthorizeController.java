@@ -44,7 +44,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if (githubUser != null) {                     // If a not null user is returned, the login is successful
+        if (githubUser != null && githubUser.getId() != null) {                     // If a not null user is returned, the login is successful
             // login is successful, proceed to create session and cookie
             User user = new User();
             String token = UUID.randomUUID().toString();

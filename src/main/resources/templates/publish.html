@@ -1,27 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>发布 - Springboot BBS</title>
+    <title>Publish - Springboot BBS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
 </head>
 
-<!--
-<style>
-    body {
-        background-image: url("../resources/static/img/45degreee_fabric/45degreee_fabric.png");
-        background-repeat: repeat;
-/*
-        background-color: #efefef;
-*/
-    }
-</style>
--->
-
 <body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-fw"></i> Springboot BBS Demo</a>
+<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #449ef3">
+    <a class="navbar-brand" href="#" style="color: white"><i class="fa fa-rocket fa-fw"></i> Springboot BBS Demo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,29 +18,32 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#"><i class="fa fa-home fa-fw"></i> 主页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/" style="color: white"><i class="fa fa-home fa-fw"></i> Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-align-left fa-fw"></i> 板块</a>
+                <a class="nav-link" href="#" style="color: white"><i class="fa fa-align-left fa-fw"></i> Subjects</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <ul class="navbar-nav mr-0 mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+            <li class="nav-item" th:if="${session.user != null}">
+                <a class="nav-link" style="color: #0de7ff" href="/publish"><i class="fa fa-plus-square"></i> Publish</a>
+            </li>
             <li class="nav-item dropdown" th:if="${session.user != null}">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" style="color: white"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#"><i class="fa fa-home -fa-fw"></i>&nbsp;&nbsp;消息中心</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;个人资料</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-home -fa-fw"></i>&nbsp;&nbsp;Message Center</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;Personal Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;退出登录</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;Sign Out</a>
                 </div>
             </li>
             <li class="nav-item" th:if="${session.user == null}">
-                <a class="nav-link" href="https://github.com/login/oauth/authorize?client_id=30db3d189a78ee7c7558&redirect_uri=http://localhost:8887/callback&scope=user&state=1">
+                <a class="nav-link" style="color: white" href="https://github.com/login/oauth/authorize?client_id=30db3d189a78ee7c7558&redirect_uri=http://localhost:8887/callback&scope=user&state=1">
                     登录<span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -60,46 +51,57 @@
     </div>
 </nav>
 
+<!--
 <div class="container-fluid" style="margin: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
+-->
+<div class="container mx-auto" style="margin-top: 30px; margin-bottom: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
+
     <div class="row">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <h2><span class="fa fa-plus-square fa-fw" aria-hidden="true"></span> 发起</h2>
+            <h2><span class="fa fa-plus-square fa-fw" aria-hidden="true"></span> Publish</h2>
             <hr>
 
             <form action="/publish" method="post">
                 <div class="form-group">
-                    <label for="title">问题标题（简单扼要）：</label>
-                    <input type="text" class="form-control" id="title" name="title" aria-describedby="textHelp" placeholder="问题标题...">
-                    <small id="titleHelp" class="form-text text-muted">Please state your question in a short and clean style.</small>
+                    <label for="title">Question Title(Less than 30 words):</label>
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="textHelp"
+                           placeholder="Question Title...">
+                    <small id="titleHelp" class="form-text text-muted">Please state your question in a short and clean
+                        style.</small>
                 </div>
                 <div class="form-group">
-                    <label for="title">问题内容（必填，请参照右侧提示）：</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="问题内容..."></textarea>
+                    <label for="title">Question Detail(Refer to instruction on the right side):</label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10"
+                              placeholder="Question Detail..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="title">添加标签：</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以逗号隔开">
+                    <label for="title">Add tags:</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="Input tags, separate different tags with a comma...">
                 </div>
 
-                <span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
+                <div class="alert alert-danger justify-content-center" th:if="${error != null}" th:text="${error}"></div>
 
-                <button type="submit" class="btn btn-success" style="float: right">发布</button>
+                <button type="submit" class="btn btn-success" style="float: right">Publish</button>
             </form>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12" style="background-color: white;">
-            <h2><i class="fa fa-question fa-fw"></i> 问题指南</h2>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <h2><i class="fa fa-question fa-fw"></i> Instructions</h2>
             <hr>
             <ul>
-                <li>问题标题：请用精简的语言藐视您想发布的问题，不超过25字</li>
-                <li>问题内容：请详细补充您的问题内容，并确保问题描述清晰直观，同时提供一些相关的资料</li>
-                <li>选择标签：选择一个或多个合适的标签，用逗号隔开，每个标签不超过10字</li>
+                <li>Question Title: Please describe your question in a short and clear style. Use no more than 30 words.</li>
+                <li>Question Detail: Please add details to your question, keep it straight and clear and provide relevant material if needed.</li>
+                <li>Add tags: Add one or more tags. Separate different tags with comma. Each tag can have a max length of 10 words.</li>
             </ul>
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
