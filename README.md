@@ -1,16 +1,16 @@
 ## Demo BBS based on Spring Boot
 
-## 目标效果网站
+## 目标效果网站  
 https://elasticsearch.cn/
 
-## 采用资源
+## 采用资源  
 [Bootstrap](https://getbootstrap.com/)  
 [FontAwesome](https://fontawesome.com/)  
 [jQuery](https://jquery.com/)
 [Lombok](https://www.projectlombok.org/)  
 [Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
 
-##Tips
+##Tips  
 When database does not work when arribute has camel case, try configuring myBatis in application.properties:
 ```
 mybatis.configuration.map-underscore-to-camel-case=true
@@ -22,7 +22,7 @@ th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"
 th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy HH:mm')}"
 ```
 
-## 脚本
+## SQL  
 Create MySql table
 ```sql
 create table user
@@ -36,10 +36,13 @@ create table user
 	gmt_modified bigint(255) null
 );
 ```
-flyway db.migration file naming scheme(Double under scroll):
+
+## Flyway
+flyway db.migration file naming scheme(Double under scroll after V1.2):
 ```
 V1.2__Description.sql
 ``` 
+
 flyway migrate script
 ```bash
 mvn flyway:migrate
