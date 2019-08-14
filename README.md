@@ -10,7 +10,7 @@ https://elasticsearch.cn/
 [Lombok](https://www.projectlombok.org/)  
 [Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
 
-##Tips  
+## Tips  
 When database does not work when arribute has camel case, try configuring myBatis in application.properties:
 ```
 mybatis.configuration.map-underscore-to-camel-case=true
