@@ -7,3 +7,9 @@ body {
     background-image: url(../img/email-pattern/email-pattern.png);
     background-repeat: repeat;
 }
+
+.topic-text {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}

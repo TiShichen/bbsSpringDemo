@@ -7,7 +7,20 @@ https://elasticsearch.cn/
 [Bootstrap](https://getbootstrap.com/)  
 [FontAwesome](https://fontawesome.com/)  
 [jQuery](https://jquery.com/)
-[Lombok](https://www.projectlombok.org/)
+[Lombok](https://www.projectlombok.org/)  
+[Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
+
+##Tips
+When database does not work when arribute has camel case, try configuring myBatis in application.properties:
+```
+mybatis.configuration.map-underscore-to-camel-case=true
+```
+
+Converting system mills time to date
+```html
+th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"
+th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy HH:mm')}"
+```
 
 ## 脚本
 Create MySql table
