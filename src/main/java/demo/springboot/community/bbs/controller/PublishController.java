@@ -43,7 +43,7 @@ public class PublishController {
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
 
-        if (title == null || title == "") {
+/*        if (title == null || title == "") {
             model.addAttribute("error", "Title cannot be empty.");
             return "publish";
         }
@@ -54,7 +54,7 @@ public class PublishController {
         if (tag == null || tag == "") {
             model.addAttribute("error", "Please add at least one tag, any tag will work.");
             return "publish";
-        }
+        }*/
 
         User user = null;
         Cookie[] cookies = request.getCookies();
@@ -68,6 +68,20 @@ public class PublishController {
                 if (user != null) {
                     request.getSession().setAttribute("user", user);
                 }
+
+                if (title == null || title == "") {
+                    model.addAttribute("error", "Title cannot be empty.");
+                    return "publish";
+                }
+                if (description == null || description == "") {
+                    model.addAttribute("error", "Description needs to be more detailed than empty :)");
+                    return "publish";
+                }
+                if (tag == null || tag == "") {
+                    model.addAttribute("error", "Please add at least one tag, any tag will work.");
+                    return "publish";
+                }
+
                 break;
             }
         }

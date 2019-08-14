@@ -24,7 +24,8 @@
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white"><i class="fa fa-align-left fa-fw"></i> Subjects</a>
+                <a class="nav-link" href="#" style="color: white" onmouseover="this.style.color = '#0de7ff'"
+                   onmouseleave="this.style.color = 'white'"><i class="fa fa-align-left fa-fw"></i> Discover</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -33,12 +34,15 @@
         </form>
         <ul class="navbar-nav mr-5 mt-2 mt-lg-0">
             <li class="nav-item" th:if="${session.user != null}">
-                <a class="nav-link" style="color: white" href="/publish"><i class="fa fa-plus-square"></i> Publish</a>
+                <a class="nav-link" style="color: white" href="/publish" onmouseover="this.style.color = '#0de7ff'"
+                   onmouseleave="this.style.color = 'white'">
+                    <i class="fa fa-plus-square"></i> Publish</a>
             </li>
             <li class="nav-item dropdown" th:if="${session.user != null}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    style="color: white"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   onmouseover="this.style.color = '#0de7ff'" onmouseleave="this.style.color = 'white'"
                    th:text="${session.user.getName()}"></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#"><i class="fa fa-comment fa-fw"></i>&nbsp;&nbsp;Messages</a>
@@ -49,7 +53,8 @@
             </li>
             <li class="nav-item" th:if="${session.user == null}">
                 <a class="nav-link" style="color: white"
-                   href="https://github.com/login/oauth/authorize?client_id=30db3d189a78ee7c7558&redirect_uri=http://localhost:8887/callback&scope=user&state=1">
+                   href="https://github.com/login/oauth/authorize?client_id=30db3d189a78ee7c7558&redirect_uri=http://localhost:8887/callback&scope=user&state=1"
+                   onmouseover="this.style.color = '#0de7ff'" onmouseleave="this.style.color = 'white'">
                     登录<span class="sr-only">(current)</span>
                 </a>
             </li>
