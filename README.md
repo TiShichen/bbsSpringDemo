@@ -7,6 +7,7 @@ https://elasticsearch.cn/
 [Bootstrap](https://getbootstrap.com/)  
 [FontAwesome](https://fontawesome.com/)  
 [jQuery](https://jquery.com/)
+[Lombok](https://www.projectlombok.org/)
 
 ## 脚本
 Create MySql table

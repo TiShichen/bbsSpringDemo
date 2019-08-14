@@ -59,7 +59,8 @@ public class PublishController {
         User user = null;
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
-            return "index";
+            model.addAttribute("error", "User not yet signed in.");
+            return "publish";
         }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("token")) {
@@ -81,7 +82,6 @@ public class PublishController {
                     model.addAttribute("error", "Please add at least one tag, any tag will work.");
                     return "publish";
                 }
-
                 break;
             }
         }

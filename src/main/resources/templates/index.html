@@ -51,11 +51,14 @@
                     <a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;Sign out</a>
                 </div>
             </li>
+<!--
+            <li class="navbar-brand" th:if="${session.user != null}"><img src="${session.user.getAvatarUrl()}" alt="User Avatar"></li>
+-->
             <li class="nav-item" th:if="${session.user == null}">
                 <a class="nav-link" style="color: white"
                    href="https://github.com/login/oauth/authorize?client_id=30db3d189a78ee7c7558&redirect_uri=http://localhost:8887/callback&scope=user&state=1"
                    onmouseover="this.style.color = '#0de7ff'" onmouseleave="this.style.color = 'white'">
-                    登录<span class="sr-only">(current)</span>
+                    Sign in<span class="sr-only">(current)</span>
                 </a>
             </li>
         </ul>
