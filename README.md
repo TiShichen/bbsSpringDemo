@@ -15,7 +15,9 @@ When database does not work when arribute has camel case, try configuring myBati
 ```
 mybatis.configuration.map-underscore-to-camel-case=true
 ```
+[Time Format (Same usage as SQL time format)](https://www.w3school.com.cn/sql/func_date_format.asp)
 
+# Thymeleaf
 Converting system mills time to date
 ```html
 th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"
