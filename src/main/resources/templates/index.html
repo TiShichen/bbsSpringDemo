@@ -89,18 +89,28 @@
                 </div>
             </div>
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:if="${pagination.showFirstPage}">
+                        <a class="page-link" href="/?page=1" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
                         </a>
                     </li>
-                    <li class="page-item" th:each="page: ${pagination.pages}">
+                    <li class="page-item" th:if="${pagination.showPrevious}">
+                        <a class="page-link" th:href="@{/(page=${pagination.page - 1})}" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+                        </a>
+                    </li>
+                    <li class="page-item" th:each="page: ${pagination.pages}" th:class="${pagination.page == page}? 'page-item active' : 'page-item'">
                         <a class="page-link" th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                    <li class="page-item" th:if="${pagination.showNext}">
+                        <a class="page-link" th:href="@{/(page=${pagination.page + 1})}" aria-label="Next">
+                            <span aria-hidden="true"><span class="fa fa-angle-right"></span></span>
+                        </a>
+                    </li>
+                    <li class="page-item" th:if="${pagination.showEndPage}">
+                        <a class="page-link" th:href="@{/(page=${pagination.totalPage})}" aria-label="Next">
+                            <span aria-hidden="true"><span class="fa fa-angle-double-right"></span></span>
                         </a>
                     </li>
                 </ul>
