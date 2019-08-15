@@ -9,6 +9,7 @@ https://elasticsearch.cn/
 [jQuery](https://jquery.com/)
 [Lombok](https://www.projectlombok.org/)  
 [Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
+[SpringBoot Devtools](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)
 
 ## Tips  
 When database does not work when arribute has camel case, try configuring myBatis in application.properties:
