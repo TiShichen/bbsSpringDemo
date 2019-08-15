@@ -23,6 +23,13 @@
                        th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
                             class="fa fa-home fa-fw"></i> Home<span
                             class="sr-only">(current)</span></a>
+<!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白
+                    <a class="nav-link" href="/" onmouseover="this.style.color = '#0de7ff'"
+                       onmouseleave="this.style.color = 'white'"
+                       th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
+                            class="fa fa-home fa-fw"></i> Home<span
+                            class="sr-only">(current)</span></a>
+-->
 
                 </li>
                 <li class="nav-item">
