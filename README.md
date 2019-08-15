@@ -16,7 +16,15 @@ When database does not work when arribute has camel case, try configuring myBati
 ```
 mybatis.configuration.map-underscore-to-camel-case=true
 ```
-[Time Format (Same usage as SQL time format)](https://www.w3school.com.cn/sql/func_date_format.asp)
+
+[Time Format (Same usage as SQL time format)](https://www.w3school.com.cn/sql/func_date_format.asp)  
+
+Get current full URL or current URI(or use .getRequestURI)
+```html
+<div th:text="${#httpServletRequest.requestURL +'?'+ #httpServletRequest.queryString }"></div>
+<div th:text="${#httpServletRequest.requestURI}"></div>
+```
+
 
 # Thymeleaf
 Converting system mills time to date
