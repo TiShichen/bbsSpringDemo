@@ -13,3 +13,14 @@ body {
     font-weight: normal;
     color: #999;
 }
+
+.badge-bbs {
+    background-color: darkgrey;
+}
+
+.list-group-item.bbs-active {
+    z-index: 2;
+    color: #fff;
+    background-color: #449ef3;
+    border-color: #449ef3;
+}

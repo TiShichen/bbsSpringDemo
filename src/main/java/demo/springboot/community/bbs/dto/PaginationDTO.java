@@ -21,8 +21,12 @@ public class PaginationDTO {
     private Integer totalPage;
 
     public void setPagination(Integer totalCount, Integer page, Integer size) {
+        // If encounter error, go to p28
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
+            if (totalPage == 0) {
+                totalPage = 1;
+            }
         } else {
             totalPage = (totalCount / size) + 1;
         }

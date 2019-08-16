@@ -6,10 +6,11 @@ https://elasticsearch.cn/
 ## 采用资源  
 [Bootstrap](https://getbootstrap.com/)  
 [FontAwesome](https://fontawesome.com/)  
-[jQuery](https://jquery.com/)
+[jQuery](https://jquery.com/)  
 [Lombok](https://www.projectlombok.org/)  
-[Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
-[SpringBoot Devtools](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)
+[Thymeleaf Tutorial - Setting attribute values](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)  
+[SpringBoot Devtools](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)   
+[Spring MVC Book](https://docs.spring.io/spring/docs/5.0.3.RELEASE/spring-framework-reference/web.html#mvc)  
 
 ## Tips  
 When database does not work when arribute has camel case, try configuring myBatis in application.properties:

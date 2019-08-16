@@ -30,6 +30,7 @@
                        style="color: #0de7ff">
                         <i class="fa fa-home fa-fw"></i> Home<span class="sr-only">(current)</span></a>
                     <!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白     -->
+                    <!--Could write css tag .onmouseleave-->
                     <a class="nav-link" href="/" th:if="${#httpServletRequest.requestURI != '/'}"
                        onmouseover="this.style.color = '#0de7ff'"
                        onmouseleave="this.style.color = 'white'"
@@ -75,6 +76,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/profile/questions"><i class="fa fa-comment fa-fw"></i>&nbsp;&nbsp;My
                             posts</a>
+                        <a class="dropdown-item" href="/profile"><i class="fas fa-address-card fa-fw"></i>&nbsp;&nbsp;My
+                            Profile</a>
                         <!--
                                             <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;My profile</a>
                         -->
