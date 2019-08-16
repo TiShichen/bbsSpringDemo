@@ -18,25 +18,36 @@
                                         <a class="nav-link" href="/" style="color: #0de7ff"><i class="fa fa-home fa-fw"></i> Home<span
                                                 class="sr-only">(current)</span></a>
                     -->
-                    <a class="nav-link" href="/" onmouseover="this.style.color = '#0de7ff'"
+
+                    <!--
+                                        <a class="nav-link" href="/" onmouseover="this.style.color = '#0de7ff'"
+                                           onmouseleave="this.style.color = 'white'"
+                                           th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
+                                                class="fa fa-home fa-fw"></i> Home<span
+                                                class="sr-only">(current)</span></a>
+                    -->
+                    <a class="nav-link" href="/" th:if="${#httpServletRequest.requestURI == '/'}"
+                       style="color: #0de7ff">
+                        <i class="fa fa-home fa-fw"></i> Home<span class="sr-only">(current)</span></a>
+                    <!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白     -->
+                    <a class="nav-link" href="/" th:if="${#httpServletRequest.requestURI != '/'}"
+                       onmouseover="this.style.color = '#0de7ff'"
                        onmouseleave="this.style.color = 'white'"
-                       th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
-                            class="fa fa-home fa-fw"></i> Home<span
-                            class="sr-only">(current)</span></a>
-<!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白
-                    <a class="nav-link" href="/" onmouseover="this.style.color = '#0de7ff'"
-                       onmouseleave="this.style.color = 'white'"
-                       th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
-                            class="fa fa-home fa-fw"></i> Home<span
-                            class="sr-only">(current)</span></a>
--->
+                       style="color: white">
+                        <i class="fa fa-home fa-fw"></i> Home</a>
+
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: white" onmouseover="this.style.color = '#0de7ff'"
+                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI == '/discover'}"
+                       style="color: #0de7ff">
+                        <i class="fa fa-align-left fa-fw"></i> Discover<span class="sr-only">(current)</span></a>
+                    <!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白     -->
+                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI != '/discover'}"
+                       onmouseover="this.style.color = '#0de7ff'"
                        onmouseleave="this.style.color = 'white'"
-                       th:style="${#httpServletRequest.requestURI == '/discover'? 'color: #0de7ff' : 'color: white'}"><i
-                            class="fa fa-align-left fa-fw"></i> Discover</a>
+                       style="color: white">
+                        <i class="fa fa-align-left fa-fw"></i> Discover</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -45,10 +56,15 @@
             </form>
             <ul class="navbar-nav mr-0 mt-2 mt-lg-0">
                 <li class="nav-item" th:if="${session.user != null}">
-                    <a class="nav-link" style="color: white" href="/publish" onmouseover="this.style.color = '#0de7ff'"
+                    <a class="nav-link" href="/publish" th:if="${#httpServletRequest.requestURI == '/publish'}"
+                       style="color: #0de7ff">
+                        <i class="fa fa-plus-square fa-fw"></i> Post<span class="sr-only">(current)</span></a>
+                    <!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白     -->
+                    <a class="nav-link" href="/publish" th:if="${#httpServletRequest.requestURI != '/publish'}"
+                       onmouseover="this.style.color = '#0de7ff'"
                        onmouseleave="this.style.color = 'white'"
-                       th:style="${#httpServletRequest.requestURI == '/publish'? 'color: #0de7ff' : 'color: white'}">
-                        <i class="fa fa-plus-square"></i> Post</a>
+                       style="color: white">
+                        <i class="fa fa-plus-square fa-fw"></i> Post</a>
                 </li>
                 <li class="nav-item dropdown" th:if="${session.user != null}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
