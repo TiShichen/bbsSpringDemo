@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${question.title}"> - Springboot BBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bbs.css">
+
+    <!--
+        <link rel="stylesheet" href="/css/all.css">
+    -->
+    <!--
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+<!--
+    <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
+-->
+</head>
+<!--
+<body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
+-->
+<body>
+<div th:insert="~{navbar :: nav}"></div>
+
+<div class="container mx-auto"
+     style="margin-top: 30px; margin-bottom: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
+
+    <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <h4><i class="fa fa-user-astronaut"></i> <span th:text="${question.title}"></span></h4>
+            <span class="topic-text">Created by <span th:text="${question.user.name}"></span> | <span
+                    th:text="${question.viewCount}"></span> Views | Post Date: <span
+                    th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
+            <hr>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" th:text="${question.description}"></div>
+            <hr>
+            <ul class="list-group list-group-horizontal">
+<!--
+                <li th:if="${session.size() != 0}" th:text="${session.user.id == question.creator}" class="list-group-item list-group-item-action text-center"> SESSION VALUE TEST</li>
+-->
+                <li class="list-group-item list-group-item-action menu-edit text-center" th:if="${session.size() != 0 and session.user.id == question.creator}"
+                    th:href="'/publish/' + ${question.id}"><i class="fas fa-edit"></i> Edit</li>
+            </ul>
+
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="col-12">
+                <h4><i class="fa fa-user"></i> Creator</h4>
+            </div>
+            <br>
+            <div class="col-2"></div>
+            <div class="col-10">
+                <div class="media">
+                    <img class="mr-3 rounded" style="width: 30px; height: 30px"
+                         th:src="${question.user.avatarUrl}">
+                    <div class="media-body">
+                        <h6 class="mt-0">
+                            <span th:text="${question.user.name}"></span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="col-12">
+                <h4><i class="fa fa-link"></i> Related</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+-->
+
+<script src="/jquery/dist/jquery.slim.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script defer src="/js/all.js"></script>
+
+</body>
+</html>

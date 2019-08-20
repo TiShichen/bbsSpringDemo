@@ -2,9 +2,9 @@ package demo.springboot.community.bbs.controller;
 
 import demo.springboot.community.bbs.dto.AccessTokenDTO;
 import demo.springboot.community.bbs.dto.GithubUser;
-import demo.springboot.community.bbs.mapper.UserMapper;
 import demo.springboot.community.bbs.model.User;
 import demo.springboot.community.bbs.provider.GithubProvider;
+import demo.springboot.community.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -29,12 +29,11 @@ public class AuthorizeController {
     private String redirectUri;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @GetMapping("/callback")                    // Github return a URL ending with "/callback"
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request,
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
@@ -50,19 +49,27 @@ public class AuthorizeController {
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setName(githubUser.getName());
-            user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
+            user.setAccount(String.valueOf(githubUser.getId()));
             user.setAvatarUrl(githubUser.getAvatar_url());
             user.setBio(githubUser.getBio());
-            userMapper.insert(user);                    // put user info into database as a session
+
+            userService.createOrUpdate(user);
             response.addCookie(new Cookie("token", token)); //create cookie
 
-//            request.getSession().setAttribute("user", githubUser);
             return "redirect:/";
         } else {
             // login failed, proceed to re-login
             return "redirect:/";            // Go back to index.html using "redirect" command
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response) {
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }

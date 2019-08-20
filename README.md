@@ -3,7 +3,7 @@
 ## 目标效果网站  
 https://elasticsearch.cn/
 
-## 采用资源  
+## Resources  
 [Bootstrap](https://getbootstrap.com/)  
 [FontAwesome](https://fontawesome.com/)  
 [jQuery](https://jquery.com/)  
