@@ -3,8 +3,8 @@
 <head>
     <title>Post - Springboot BBS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bbs.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bbs.css">
 </head>
 
 <!--
@@ -24,6 +24,7 @@
             <h2><span class="fa fa-plus-square fa-fw" aria-hidden="true"></span> Post</h2>
             <hr>
             <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">Question Title(Less than 30 words):</label>
                     <input type="text" class="form-control" id="title" name="title" th:value="${title}"
@@ -77,9 +78,9 @@
         crossorigin="anonymous"></script>
 -->
 
-<script src="jquery/dist/jquery.slim.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script defer src="js/all.js"></script>
+<script src="/jquery/dist/jquery.slim.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script defer src="/js/all.js"></script>
 
 </body>
 </html>

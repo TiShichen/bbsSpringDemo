@@ -13,10 +13,19 @@ https://elasticsearch.cn/
 [Spring MVC Book](https://docs.spring.io/spring/docs/5.0.3.RELEASE/spring-framework-reference/web.html#mvc)  
 
 ## Tips  
-When database does not work when arribute has camel case, try configuring myBatis in application.properties:
+When database does not work when attribute has camel case, try configuring myBatis in application.properties:
 ```
 mybatis.configuration.map-underscore-to-camel-case=true
 ```
+[Static file uri in html](https://www.w3school.com.cn/html/html_filepaths.asp)
+
+| 路径                               | 描述                                |
+|----------------------------------|-----------------------------------|
+| src="picture\.jpg"        | picture\.jpg 位于与当前网页相同的文件夹        |
+| src="images/picture\.jpg"  | picture\.jpg 位于当前文件夹的 images 文件夹中 |
+| src="/images/picture\.jpg" | picture\.jpg 当前站点根目录的 images 文件夹中 |
+| src="\.\./picture\.jpg"    | picture\.jpg 位于当前文件夹的上一级文件夹中      |
+转自W3School <sup>©</sup>
 
 [Time Format (Same usage as SQL time format)](https://www.w3school.com.cn/sql/func_date_format.asp)  
 
@@ -61,6 +70,10 @@ Get current full URL or current URI(or use .getRequestURI)
 <div th:text="${#httpServletRequest.requestURI}"></div>
 ```
 
+[How to add href link to li tags](https://blog.csdn.net/zhao820695479/article/details/73027224)
+```html
+<li onclick="javascript: document.getElementById('edit-button').click();"><a id="edit-button" href="..."> Edit</a></li>
+```
 
 # Thymeleaf
 Converting system mills time to date

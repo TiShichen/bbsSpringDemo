@@ -3,8 +3,8 @@
 <head>
     <title th:text="${sectionName}"> - Springboot BBS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bbs.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bbs.css">
     <!--
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     -->
@@ -28,7 +28,9 @@
                 <img class="mr-3 rounded-circle"
                      th:src="${question.user.avatarUrl}">
                 <div class="media-body">
-                    <h5 class="mt-0" th:text="${question.title}"></h5>
+                    <h5 class="mt-0">
+                        <a th:href="@{'/question/' + ${question.id}}" th:text="${question.title}"></a>
+                    </h5>
                     <span class="topic-text"> • <span th:text="${question.commentCount}"></span> Replies • <span
                             th:text="${question.viewCount}"></span> Views • Post Date <span
                             th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
@@ -91,9 +93,9 @@
         crossorigin="anonymous"></script>
 -->
 
-<script src="jquery/dist/jquery.slim.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script defer src="js/all.js"></script>
+<script src="/jquery/dist/jquery.slim.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script defer src="/js/all.js"></script>
 
 </body>
 </html>

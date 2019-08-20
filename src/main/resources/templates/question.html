@@ -3,6 +3,7 @@
 <head>
     <title th:text="${question.title}"> - Springboot BBS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bbs.css">
 
@@ -12,9 +13,9 @@
     <!--
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     -->
-<!--
-    <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
--->
+    <!--
+        <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
+    -->
 </head>
 <!--
 <body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
@@ -32,14 +33,12 @@
                     th:text="${question.viewCount}"></span> Views | Post Date: <span
                     th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
             <hr>
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" th:text="${question.description}"></div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" th:text="${question.description}"></div>
             <hr>
             <ul class="list-group list-group-horizontal">
-<!--
-                <li th:if="${session.size() != 0}" th:text="${session.user.id == question.creator}" class="list-group-item list-group-item-action text-center"> SESSION VALUE TEST</li>
--->
-                <li class="list-group-item list-group-item-action menu-edit text-center" th:if="${session.size() != 0 and session.user.id == question.creator}"
-                    th:href="'/publish/' + ${question.id}"><i class="fas fa-edit"></i> Edit</li>
+                <li class="list-group-item list-group-item-action text-center" onclick="document.getElementById('edit-button').click();"
+                    th:if="${session.size() != 0 and session.user.id == question.creator}"><i class="fas fa-edit"></i><a id="edit-button" th:href="'/publish/' + ${question.id}" class="menu-edit"> Edit</a>
+                </li>
             </ul>
 
         </div>

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into user (name,account,token,gmt_create,gmt_modified,avatar_url) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified},#{avatarUrl})")
+    @Insert("insert into user (name,account,token,gmt_create,gmt_modified,avatar_url) values (#{name},#{account},#{token},#{gmtCreate},#{gmtModified},#{avatarUrl})")
     void insert(User user);
 
     @Select("select * from user where token = #{token}")
@@ -19,7 +19,7 @@ public interface UserMapper {
     @Select("select * from user where account = #{accountId}")
     User findByAccountId(@Param("accountId") String accountId);
 
-    @Update("update user set name = #{name}, token = #{token}, gmt_modified = #{gmtModified}, avatar_url = #{avatarUrl} where id = #{id}")
+    @Update("update user set name = #{name}, token = #{token}, gmt_modified = #{gmtModified}, avatar_url = #{avatarUrl}, bio = #{bio} where id = #{id}")
     void update(User user);
 
 }

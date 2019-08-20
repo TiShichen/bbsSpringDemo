@@ -74,11 +74,11 @@ public class QuestionService {
 
         // 5 * (i - 1) ==> size * (page - 1)
         Integer offset = size * (page - 1);
-        if (offset < 1) {
-            offset = 1;
+        if (offset < 0) {
+            offset = 0;
         }
 
-        List<Question> questions = questionMapper.listByUserId(userId, offset, size);
+        List<Question> questions = questionMapper.listByUserId(userId, offset, size); //offset - 1
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {
@@ -101,5 +101,18 @@ public class QuestionService {
         User user = userMapper.findById(question.getCreator());
         questionDTO.setUser(user);
         return questionDTO;
+    }
+
+    public void createOrUpdate(Question question) {
+        if (question.getId() == null) {
+            // Create
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+            questionMapper.create(question);
+        } else {
+            // Update
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.update(question);
+        }
     }
 }
