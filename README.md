@@ -107,3 +107,14 @@ flyway migrate script
 ```bash
 mvn flyway:migrate
 ```
+
+## MyBatis Generator
+You can pass parameters to the goal with standard Maven command line properties. For example:
+```bash
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
+[Running with Maven](http://www.mybatis.org/generator/running/runningWithMaven.html)  
+[MBG VirtualPrimaryKey Plugin](http://www.mybatis.org/generator/reference/plugins.html)
+```xml
+<property name="virtualKeyColumns" value="ID1, ID2" />
+```

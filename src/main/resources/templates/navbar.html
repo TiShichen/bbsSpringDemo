@@ -4,8 +4,8 @@
 
 <body>
 <div th:fragment="nav">
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #449ef3">
-        <a class="navbar-brand" href="/" style="color: white"><i class="fa fa-rocket fa-fw"></i> Springboot BBS Demo</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #449ef3">
+        <a class="navbar-brand" href="/" style="color: white"><i class="fa fa-rocket fa-fw"></i> Man VS Springboot</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,18 +14,6 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <!--
-                                        <a class="nav-link" href="/" style="color: #0de7ff"><i class="fa fa-home fa-fw"></i> Home<span
-                                                class="sr-only">(current)</span></a>
-                    -->
-
-                    <!--
-                                        <a class="nav-link" href="/" onmouseover="this.style.color = '#0de7ff'"
-                                           onmouseleave="this.style.color = 'white'"
-                                           th:style="${#httpServletRequest.requestURI == '/'? 'color: #0de7ff' : 'color: white'}"><i
-                                                class="fa fa-home fa-fw"></i> Home<span
-                                                class="sr-only">(current)</span></a>
-                    -->
                     <a class="nav-link" href="/" th:if="${#httpServletRequest.requestURI == '/'}"
                        style="color: #0de7ff">
                         <i class="fa fa-home fa-fw"></i> Home<span class="sr-only">(current)</span></a>
@@ -82,7 +70,8 @@
                                             <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;My profile</a>
                         -->
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt fa-fw"></i>&nbsp;&nbsp;Sign out</a>
+                        <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt fa-fw"></i>&nbsp;&nbsp;Sign
+                            out</a>
                     </div>
                 </li>
                 <!--

@@ -5,20 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bbs.css">
-<!--
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
--->
+    <!--
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
     <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
 </head>
-<!--
-<body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
--->
 <body>
 <div th:insert="~{navbar :: nav}"></div>
 
 <div class="container mx-auto"
-     style="margin-top: 30px; margin-bottom: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
+     style="margin-top: 70px; margin-bottom: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
 
     <div class="row">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
@@ -50,7 +47,8 @@
                             <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
                         </a>
                     </li>
-                    <li class="page-item" th:each="page: ${pagination.pages}" th:class="${pagination.page == page}? 'page-item active' : 'page-item'">
+                    <li class="page-item" th:each="page: ${pagination.pages}"
+                        th:class="${pagination.page == page}? 'page-item active' : 'page-item'">
                         <a class="page-link" th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
                     <li class="page-item" th:if="${pagination.showNext}">
