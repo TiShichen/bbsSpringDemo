@@ -71,7 +71,7 @@
             <div class="list-group">
                 <a href="/profile/questions" class="list-group-item list-group-item-action"
                    th:class="${section == 'questions'}? 'list-group-item list-group-item-action bbs-active':'list-group-item list-group-item-action'">
-                    My Posts<span class="badge badge-info badge-pill badge-bbs float-right mt-1">6</span></a>
+                    My Posts<span class="badge badge-info badge-pill badge-bbs float-right mt-1" th:text="${paginationDTO.totalCount}"></span></a>
                 <a href="/profile/replies" class="list-group-item list-group-item-action"
                    th:class="${section == 'replies'}? 'list-group-item list-group-item-action bbs-active':'list-group-item list-group-item-action'">Recent
                     Replies<span class="badge badge-info badge-pill badge-bbs float-right my-1">16</span></a>

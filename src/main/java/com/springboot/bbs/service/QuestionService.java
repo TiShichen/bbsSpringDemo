@@ -2,6 +2,8 @@ package com.springboot.bbs.service;
 
 import com.springboot.bbs.dto.PaginationDTO;
 import com.springboot.bbs.dto.QuestionDTO;
+import com.springboot.bbs.exception.CustomizeErrorCode;
+import com.springboot.bbs.exception.CustomizeException;
 import com.springboot.bbs.mapper.QuestionMapper;
 import com.springboot.bbs.model.Question;
 import com.springboot.bbs.model.QuestionExample;
@@ -32,7 +34,7 @@ public class QuestionService {
     public PaginationDTO list(Integer page, Integer size) {
 
         PaginationDTO paginationDTO = new PaginationDTO();
-        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
         paginationDTO.setPagination(totalCount, page, size);
 
         if (page < 1) {
@@ -67,8 +69,9 @@ public class QuestionService {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(userId);
-        Integer totalCount = (int)questionMapper.countByExample(questionExample);
+        Integer totalCount = (int) questionMapper.countByExample(questionExample);
 
+        paginationDTO.setTotalCount(totalCount);
         paginationDTO.setPagination(totalCount, page, size);
 
         if (page < 1) {
@@ -105,6 +108,10 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
+
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -128,7 +135,10 @@ public class QuestionService {
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
