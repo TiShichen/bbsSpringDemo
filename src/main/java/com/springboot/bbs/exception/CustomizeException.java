@@ -6,12 +6,10 @@ package com.springboot.bbs.exception;
  */
 public class CustomizeException extends RuntimeException {      // Why extends RuntimeException: so that we do not need to try/catch in parent directory, we can just try/catch under this class(QuestionController)
     private String message;
-
-    public CustomizeException(String message) {
-        this.message = message;
-    }
+    private Integer code;
 
     public CustomizeException(ICustomizeErrorCode errorCode) {
+        this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
     }
 
@@ -20,4 +18,7 @@ public class CustomizeException extends RuntimeException {      // Why extends R
         return message;
     }
 
+    public Integer getCode() {
+        return code;
+    }
 }

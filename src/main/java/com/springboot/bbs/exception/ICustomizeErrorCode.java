@@ -6,4 +6,5 @@ package com.springboot.bbs.exception;
  */
 public interface ICustomizeErrorCode {
     String getMessage();
+    Integer getCode();
 }

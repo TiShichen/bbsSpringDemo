@@ -4,6 +4,7 @@ import com.springboot.bbs.dto.PaginationDTO;
 import com.springboot.bbs.dto.QuestionDTO;
 import com.springboot.bbs.exception.CustomizeErrorCode;
 import com.springboot.bbs.exception.CustomizeException;
+import com.springboot.bbs.mapper.QuestionExtMapper;
 import com.springboot.bbs.mapper.QuestionMapper;
 import com.springboot.bbs.model.Question;
 import com.springboot.bbs.model.QuestionExample;
@@ -30,6 +31,8 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
 
@@ -140,5 +143,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

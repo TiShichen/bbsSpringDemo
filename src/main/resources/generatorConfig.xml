@@ -46,5 +46,8 @@
         <table schema="bbsmysql" tableName="question" domainObjectName="Question">
             <property name="useActualColumnNames" value="false"/>
         </table>
+        <table schema="bbsmysql" tableName="comment" domainObjectName="Comment">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
     </context>
 </generatorConfiguration>

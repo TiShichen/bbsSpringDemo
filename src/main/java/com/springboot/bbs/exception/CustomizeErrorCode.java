@@ -6,16 +6,29 @@ package com.springboot.bbs.exception;
  */
 public enum CustomizeErrorCode implements ICustomizeErrorCode {
 
-    QUESTION_NOT_FOUND("Looks like the question you are looking for does not exist, it did not survive the nuke!!!. Try look for another question?");
+    QUESTION_NOT_FOUND(2001,"Looks like the question you are looking for does not exist, it did not survive the nuke!!!. Try look for another question?"),
+    TARGET_PARAM_NOT_FOUND(2002, "You did not select any question or comment to reply, you need to select a target even you use nukes."),
+    NOT_LOGGED_IN(2003, "User haven't logged in, we do not allow users to comment without logging in, for nuclear security reason.");
+
+    ;
 
     private String message;
+    private Integer code;
 
-    CustomizeErrorCode(String message) {
+    CustomizeErrorCode(Integer code, String message) {
         this.message = message;
+        this.code = code;
     }
 
     @Override
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+
 }
