@@ -3,7 +3,6 @@ package com.springboot.bbs.controller;
 import com.springboot.bbs.dto.CommentDTO;
 import com.springboot.bbs.dto.ResultDTO;
 import com.springboot.bbs.exception.CustomizeErrorCode;
-import com.springboot.bbs.mapper.CommentMapper;
 import com.springboot.bbs.model.Comment;
 import com.springboot.bbs.model.User;
 import com.springboot.bbs.service.CommentService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 
 /**
  * @Author ShichenLi

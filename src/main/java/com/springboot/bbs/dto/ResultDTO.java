@@ -1,6 +1,7 @@
 package com.springboot.bbs.dto;
 
 import com.springboot.bbs.exception.CustomizeErrorCode;
+import com.springboot.bbs.exception.CustomizeException;
 import lombok.Data;
 
 /**
@@ -19,8 +20,12 @@ public class ResultDTO {
         return resultDTO;
     }
 
-    public static Object errorOf(CustomizeErrorCode errorCode) {
+    public static ResultDTO errorOf(CustomizeErrorCode errorCode) {
         return errorOf(errorCode.getCode(), errorCode.getMessage());
+    }
+
+    public static ResultDTO errorOf(CustomizeException e) {
+        return errorOf(e.getCode(), e.getMessage());
     }
 
     public static ResultDTO okOf() {
@@ -29,4 +34,6 @@ public class ResultDTO {
         resultDTO.setMessage("Request succeeded, but DON'T TRY TO NUKE OUR SERVER, WE ARE WATCHING YOU.");
         return resultDTO;
     }
+
+
 }
