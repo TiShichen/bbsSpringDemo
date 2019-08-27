@@ -10,6 +10,7 @@ import com.springboot.bbs.model.Comment;
 import com.springboot.bbs.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author ShichenLi
@@ -25,6 +26,7 @@ public class CommentService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
+    @Transactional      // Put the whole method into one Transaction(事务), so that the transaction only finish when all tasks finished successfully. It will rollback if any error or uncatched exception occurs.
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
