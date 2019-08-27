@@ -33,3 +33,7 @@ body {
 .top-edge {
     margin-top: 80px;
 }
+
+.comment-margin {
+    margin: 15px 0;
+}
