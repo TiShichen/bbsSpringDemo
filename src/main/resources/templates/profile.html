@@ -10,9 +10,7 @@
     -->
     <script src="https://kit.fontawesome.com/0225e9d401.js"></script>
 </head>
-<!--
-<body background="img/email-pattern/email-pattern.png" style="background-repeat: repeat">
--->
+
 <body>
 <div th:insert="~{navbar :: nav}"></div>
 
@@ -23,7 +21,9 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <h2><i class="fa fa-portrait"></i> <span th:text="${sectionName}"></span></h2>
             <hr>
-            <div class="alert alert-info text-center" th:if="${paginationDTO.questions.isEmpty()}">You do not have any post yet.</div>
+            <div class="alert alert-info text-center" th:if="${paginationDTO.questions.isEmpty()}">You do not have any
+                post yet.
+            </div>
             <div class="media" th:each="question : ${paginationDTO.questions}">
                 <img class="mr-3 rounded-circle"
                      th:src="${question.user.avatarUrl}">
@@ -45,7 +45,8 @@
                         </a>
                     </li>
                     <li class="page-item" th:if="${paginationDTO.showPrevious}">
-                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.page - 1})}" aria-label="Previous">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.page - 1})}"
+                           aria-label="Previous">
                             <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
                         </a>
                     </li>
@@ -54,12 +55,14 @@
                         <a class="page-link" th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}"></a>
                     </li>
                     <li class="page-item" th:if="${paginationDTO.showNext}">
-                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.page + 1})}" aria-label="Next">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.page + 1})}"
+                           aria-label="Next">
                             <span aria-hidden="true"><span class="fa fa-angle-right"></span></span>
                         </a>
                     </li>
                     <li class="page-item" th:if="${paginationDTO.showEndPage}">
-                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.totalPage})}" aria-label="Next">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${paginationDTO.totalPage})}"
+                           aria-label="Next">
                             <span aria-hidden="true"><span class="fa fa-angle-double-right"></span></span>
                         </a>
                     </li>
@@ -71,7 +74,8 @@
             <div class="list-group">
                 <a href="/profile/questions" class="list-group-item list-group-item-action"
                    th:class="${section == 'questions'}? 'list-group-item list-group-item-action bbs-active':'list-group-item list-group-item-action'">
-                    My Posts<span class="badge badge-info badge-pill badge-bbs float-right mt-1" th:text="${paginationDTO.totalCount}"></span></a>
+                    My Posts<span class="badge badge-info badge-pill badge-bbs float-right mt-1"
+                                  th:text="${paginationDTO.totalCount}"></span></a>
                 <a href="/profile/replies" class="list-group-item list-group-item-action"
                    th:class="${section == 'replies'}? 'list-group-item list-group-item-action bbs-active':'list-group-item list-group-item-action'">Recent
                     Replies<span class="badge badge-info badge-pill badge-bbs float-right my-1">16</span></a>
