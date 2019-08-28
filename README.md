@@ -28,7 +28,7 @@ mybatis.configuration.map-underscore-to-camel-case=true
 | src="/images/picture\.jpg" | picture\.jpg 当前站点根目录的 images 文件夹中 |
 | src="\.\./picture\.jpg"    | picture\.jpg 位于当前文件夹的上一级文件夹中      |
 
-转自W3School <sup>©</sup>, Copyright W3Sschool <sup>©</sup>
+[转自W3School <sup>©</sup>, Copyright W3Sschool <sup>©</sup>](https://www.w3school.com.cn/)
 
 [Time Format (Same usage as SQL time format)](https://www.w3school.com.cn/sql/func_date_format.asp)  
 
@@ -66,7 +66,7 @@ mybatis.configuration.map-underscore-to-camel-case=true
 | %Y | 年，4 位                           |
 | %y | 年，2 位                           |
 
-转自W3School <sup>©</sup>, Copyright W3Sschool <sup>©</sup>
+[转自W3School <sup>©</sup>, Copyright W3Sschool <sup>©</sup>](https://www.w3school.com.cn/)
 
 Get current full URL or current URI(or use .getRequestURI)
 ```html
