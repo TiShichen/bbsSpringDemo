@@ -41,22 +41,24 @@
                         id="delete-button" th:href="'/publish/' + ${question.id}" class="menu-edit"> Delete</a>
                 </li>
             </ul>
-            <hr>
+            <hr th:if="${session.size() != 0 and session.user.id == question.creator}">
             <!--            <form>
                                 <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Example textarea</label>-->
-            <div class="media">
-                <img class="mr-3 rounded" style="width: 30px; height: 30px"
-                     th:src="${question.user.avatarUrl}">
-                <div class="media-body" style="padding-top: 4px">
-                    <h6 class="mt-0">
-                        <span th:text="${question.user.name}"></span>
-                    </h6>
+            <div id="comment_section">
+                <div class="media">
+                    <img class="mr-3 rounded" style="width: 30px; height: 30px"
+                         th:src="${question.user.avatarUrl}">
+                    <div class="media-body" style="padding-top: 4px">
+                        <h6 class="mt-0">
+                            <span th:text="${question.user.name}"></span>
+                        </h6>
+                    </div>
                 </div>
+                <input type="hidden" id="question_id" th:value="${question.id}">
+                <textarea class="form-control comment-margin" id="comment_area" rows="6"></textarea>
+                <button type="button" class="btn btn-outline-success float-right" onclick="post()">Comment</button>
             </div>
-            <input type="hidden" id="question_id" th:value="${question.id}">
-            <textarea class="form-control comment-margin" id="comment_area" rows="6"></textarea>
-            <button type="button" class="btn btn-outline-success float-right" onclick="post()">Comment</button>
             <!--                </div>
                         </form>-->
 
@@ -96,7 +98,7 @@
         crossorigin="anonymous"></script>
 -->
 
-<script src="/jquery/dist/jquery.slim.min.js"></script>
+<script src="/jquery/dist/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bbs.js"></script>
 <script defer src="/js/all.js"></script>
