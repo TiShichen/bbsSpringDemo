@@ -37,3 +37,14 @@ body {
 .comment-margin {
     margin: 15px 0;
 }
+.btn-light:hover {
+    background-color: #449EF3;
+}
+
+.badge-bbs-light {
+    background-color: #449ef3;
+}
+
+.btn-light {
+    cursor: pointer;
+}

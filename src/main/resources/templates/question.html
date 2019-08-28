@@ -20,14 +20,17 @@
      style="margin-top: 70px; margin-bottom: 30px; background-color: white; padding-top: 15px; padding-bottom: 15px">
 
     <div class="row">
+        <!--Left side of the website-->
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <h4><i class="fa fa-user-astronaut"></i> <span th:text="${question.title}"></span></h4>
+            <!--Question information and details-->
+            <h3><i class="fa fa-user-astronaut"></i> <span th:text="${question.title}"></span></h3>
             <span class="topic-text">Created by <span th:text="${question.user.name}"></span> | <span
                     th:text="${question.viewCount}"></span> Views | Post Date: <span
                     th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
             <hr>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" th:text="${question.description}"></div>
             <hr>
+            <!--Action buttons: Edit, Delete-->
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item list-group-item-action text-center"
                     onclick="document.getElementById('edit-button').click();"
@@ -42,10 +45,55 @@
                 </li>
             </ul>
             <hr th:if="${session.size() != 0 and session.user.id == question.creator}">
-            <!--            <form>
-                                <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>-->
+            <!--Comment list-->
+            <div>
+                <h4>
+                    <i class="fa fa-umbrella-beach"></i>
+                    <span th:text="${question.commentCount}"></span> Replies
+                </h4>
+                <hr>
+                <div class="media">
+                    <img class="mr-3 rounded" style="width: 30px; height: 30px"
+                         th:src="${question.user.avatarUrl}">
+                    <div class="media-body" style="padding-top: 4px">
+                        <h6 class="mt-0">
+                            <span th:text="${question.user.name}"></span>
+                        </h6>
+                        <div>
+                            Comment content lol.
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light" onmouseover="document.getElementById('like-button').onmouseover();" onmouseout="document.getElementById('like-button').onmouseout();">
+                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <span id="like-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fa fa-pizza-slice"></i>
+                                Like
+                                </span>
+                                <span class="badge badge-primary badge-bbs-light">0</span>
+                            </label>
+                            <label class="btn btn-light" onmouseover="document.getElementById('comment-button').onmouseover();" onmouseout="document.getElementById('comment-button').onmouseout();">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span id="comment-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fa fa-comment-dollar"></i>
+                                Comment
+                                </span>
+                                <span class="badge badge-primary badge-bbs-light">0</span>
+                            </label>
+                            <label class="btn btn-light" onmouseover="document.getElementById('share-button').onmouseover();" onmouseout="document.getElementById('share-button').onmouseout();">
+                                <input type="radio" name="options" id="option3" autocomplete="off">
+                                <span id="share-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fas fa-fist-raised"></i>
+                                Share
+                                </span>
+                            </label>
+                        </div>
+                        <div class="float-right" th:text="${#dates.format(question.gmtCreate,'dd-MMMM-yyyy')}"
+                             style="color: darkgray; padding-top: 10px"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--Comment input box-->
             <div id="comment_section">
+                <hr>
                 <div class="media">
                     <img class="mr-3 rounded" style="width: 30px; height: 30px"
                          th:src="${question.user.avatarUrl}">
@@ -59,10 +107,8 @@
                 <textarea class="form-control comment-margin" id="comment_area" rows="6"></textarea>
                 <button type="button" class="btn btn-outline-success float-right" onclick="post()">Comment</button>
             </div>
-            <!--                </div>
-                        </form>-->
-
         </div>
+        <!--Right side of the website-->
         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="col-12">
                 <h4><i class="fa fa-user"></i> Creator</h4>

@@ -1,6 +1,6 @@
 package com.springboot.bbs.controller;
 
-import com.springboot.bbs.dto.CommentDTO;
+import com.springboot.bbs.dto.CommentCreateDTO;
 import com.springboot.bbs.dto.ResultDTO;
 import com.springboot.bbs.exception.CustomizeErrorCode;
 import com.springboot.bbs.model.Comment;
@@ -27,7 +27,7 @@ public class CommentController {
 
     @ResponseBody       // @ResponseBody can parse an object to JSON then send to frontend
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request) {        // @RequestBody can parse JSON to an object
 
         User user = (User) request.getSession().getAttribute("user");
@@ -36,9 +36,9 @@ public class CommentController {
         }
 
         Comment comment = new Comment();
-        comment.setParentId(commentDTO.getParentId());
-        comment.setContent(commentDTO.getContent());
-        comment.setType(commentDTO.getType());
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setCommentator(user.getId());
