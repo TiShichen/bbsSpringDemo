@@ -28,15 +28,15 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI == '/discover'}"
+                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI == '/topics'}"
                        style="color: #0de7ff">
-                        <i class="fa fa-align-left fa-fw"></i> Discover<span class="sr-only">(current)</span></a>
+                        <i class="fa fa-puzzle-piece fa-fw"></i> Topics<span class="sr-only">(current)</span></a>
                     <!--                如果目前URI为当前栏目，则显示将栏目高亮的标签；如果不是当前栏目，则运行鼠标悬浮高亮，移开变白     -->
-                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI != '/discover'}"
+                    <a class="nav-link" href="/#" th:if="${#httpServletRequest.requestURI != '/topics'}"
                        onmouseover="this.style.color = '#0de7ff'"
                        onmouseleave="this.style.color = 'white'"
                        style="color: white">
-                        <i class="fa fa-align-left fa-fw"></i> Discover</a>
+                        <i class="fa fa-puzzle-piece fa-fw"></i> Topics</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
