@@ -49,61 +49,76 @@
             <div>
                 <h4>
                     <i class="fa fa-umbrella-beach"></i>
-                    <span th:text="${question.commentCount}"></span> Replies
+                    <span th:text="${question.commentCount}"></span> Comments
                 </h4>
                 <hr>
-                <div class="media">
+                <div class="media" th:each="comment : ${comments}">
                     <img class="mr-3 rounded" style="width: 30px; height: 30px"
-                         th:src="${question.user.avatarUrl}">
+                         th:src="${comment.user.avatarUrl}">
                     <div class="media-body" style="padding-top: 4px">
                         <h6 class="mt-0">
-                            <span th:text="${question.user.name}"></span>
+                            <span th:text="${comment.user.name}"></span>
                         </h6>
-                        <div>
-                            Comment content lol.
-                        </div>
+                        <div th:text="${comment.content}"></div>
                         <div style="height: 10px"></div>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light" onmouseover="document.getElementById('like-button').onmouseover();" onmouseout="document.getElementById('like-button').onmouseout();">
+                            <label class="btn btn-light">
                                 <input type="radio" name="options" id="option1" autocomplete="off">
-                                <span id="like-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fa fa-pizza-slice"></i>
+                                <span id="like-button" onmouseover="this.style.color = 'white'"
+                                      onmouseout="this.style.color = 'black'"><i class="fa fa-pizza-slice"></i>
                                 Like
                                 </span>
                                 <span class="badge badge-primary badge-bbs-light">0</span>
                             </label>
-                            <label class="btn btn-light" onmouseover="document.getElementById('comment-button').onmouseover();" onmouseout="document.getElementById('comment-button').onmouseout();">
+                            <!--
+                                                        <label class="btn btn-light" onmouseover="document.getElementById('like-button').onmouseover();" onmouseout="document.getElementById('like-button').onmouseout();">
+                                                            <input type="radio" name="options" id="option1" autocomplete="off">
+                                                            <span id="like-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fa fa-pizza-slice"></i>
+                                                            Like
+                                                            </span>
+                                                            <span class="badge badge-primary badge-bbs-light">0</span>
+                                                        </label>
+                            -->
+                            <label class="btn btn-light">
                                 <input type="radio" name="options" id="option2" autocomplete="off">
-                                <span id="comment-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fa fa-comment-dollar"></i>
+                                <span id="comment-button" onmouseover="this.style.color = 'white'"
+                                      onmouseout="this.style.color = 'black'"><i class="fa fa-comment-dollar"></i>
                                 Comment
                                 </span>
                                 <span class="badge badge-primary badge-bbs-light">0</span>
                             </label>
-                            <label class="btn btn-light" onmouseover="document.getElementById('share-button').onmouseover();" onmouseout="document.getElementById('share-button').onmouseout();">
+                            <label class="btn btn-light">
                                 <input type="radio" name="options" id="option3" autocomplete="off">
-                                <span id="share-button" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'black'"><i class="fas fa-fist-raised"></i>
+                                <span id="share-button" onmouseover="this.style.color = 'white'"
+                                      onmouseout="this.style.color = 'black'"><i class="fas fa-fist-raised"></i>
                                 Share
                                 </span>
                             </label>
                         </div>
-                        <div class="float-right" th:text="${#dates.format(question.gmtCreate,'dd-MMMM-yyyy')}"
-                             style="color: darkgray; padding-top: 10px"></div>
+                        <div class="float-right" th:text="${#dates.format(comment.gmtCreate,'dd-MMMM-yyyy')}"
+                             style="color: darkgray; padding-top: 10px">
+                        </div>
+                        <hr>
                     </div>
                 </div>
 
             </div>
             <!--Comment input box-->
             <div id="comment_section">
+                <h4 th:if="${session.user != null}"><i class="fa fa-couch"></i> Comment your thought</h4>
+                <h4 th:if="${session.user == null}"><i class="far fa-pause-circle"></i> Login to comment</h4>
                 <hr>
-                <div class="media">
+                <div class="media" th:if="${session.user != null}">
                     <img class="mr-3 rounded" style="width: 30px; height: 30px"
-                         th:src="${question.user.avatarUrl}">
+                         th:src="${session.user.avatarUrl}">
                     <div class="media-body" style="padding-top: 4px">
                         <h6 class="mt-0">
-                            <span th:text="${question.user.name}"></span>
+                            <span th:text="${session.user.name}"></span>
                         </h6>
                     </div>
                 </div>
                 <input type="hidden" id="question_id" th:value="${question.id}">
+                <input type="hidden" id="session_user" th:value="${session.user}">
                 <textarea class="form-control comment-margin" id="comment_area" rows="6"></textarea>
                 <button type="button" class="btn btn-outline-success float-right" onclick="post()">Comment</button>
             </div>

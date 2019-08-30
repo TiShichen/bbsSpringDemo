@@ -6,6 +6,7 @@ import com.springboot.bbs.exception.CustomizeErrorCode;
 import com.springboot.bbs.model.Comment;
 import com.springboot.bbs.model.User;
 import com.springboot.bbs.service.CommentService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +34,10 @@ public class CommentController {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGGED_IN);
+        }
+
+        if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_EMPTY);
         }
 
         Comment comment = new Comment();

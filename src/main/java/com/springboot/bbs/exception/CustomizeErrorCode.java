@@ -12,6 +12,7 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     SYS_ERROR(2004, "Looks like your requested service was nuked, come back and try again later?"),
     TYPE_PARAM_WRONG(2005, "Comment type wrong or does not exist, to get this error, you must be trying something nuclear, PLEASE DONT'T NUKE US."),
     COMMENT_NOT_FOUND(2006, "Looks like the comment you are replying to does not exist, it did not survive the nuke!!! Try look for another question?"),
+    CONTENT_EMPTY(2007, "Comment content cannot be empty, say something my friend.")
 
     ;
 
